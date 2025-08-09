@@ -49,19 +49,6 @@ def aguardar_e_abrir_conversa(driver, nome_contato):
     )
     logging.info(f"Conversa com '{nome_contato}' aberta.")
 
-def responder_automaticamente(driver, texto, remetente):
-    try:
-        campo = driver.find_element(By.XPATH, "//div[@aria-label='Digite uma mensagem'][@data-tab='10']")
-        texto_limpo = texto.strip().lower()
-
-        if re.match(r"bar[aã]o.*homem", texto_limpo, re.IGNORECASE):
-            campo.send_keys("Não, Barão não é homem.\n")
-        elif texto_limpo.startswith("#menu"):
-            campo.send_keys("Menu:\n1. Opção 1\n2. Opção 2\n3. Opção 3\n")
-
-    except Exception as e:
-        logging.warning(f"Erro ao responder: {e}")
-
 def carregar_mensagens_lidas():
     if MSG_REGISTRADAS.exists():
         try:
